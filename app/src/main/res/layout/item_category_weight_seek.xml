@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/view_name"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:text="安全"
+        tools:text="安全" />
+
+    <TextView
+        android:id="@+id/view_ratio"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="32%"
+        tools:text="32%"
+        />
+
+    <TextView
+        android:id="@+id/view_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_name"
+        android:layout_marginTop="8.5dp"
+        android:text="主要围绕微生物、重金属、防腐剂等项目做了检测"
+        />
+
+    <com.fxx.library.widget.chart.pie.PieSeekBar
+        style="@style/Widget.SeekBar.Normal"
+        android:id="@+id/seekBar0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pie1"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:progress="40"
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <com.fxx.library.widget.chart.pie.PieView
+        android:id="@+id/pie1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="3dp" />
+
+    <com.fxx.library.widget.chart.pie.PieLegendLayout
+        android:id="@+id/layout_legend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@id/pie1"
+        android:layout_toRightOf="@id/pie1" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pie1"
+        android:layout_marginTop="50dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/view_name"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="安全"
+            android:textColor="#222"
+            android:textSize="16sp"
+            tools:text="安全" />
+
+        <TextView
+            android:id="@+id/view_ratio"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="32%"
+            android:textColor="#666"
+            android:textSize="14sp"
+            tools:text="32%" />
+
+        <TextView
+            android:id="@+id/view_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="8.5dp"
+            android:text="主要围绕微生物、重金属、防腐剂等项目做了检测"
+            android:textColor="#666"
+            android:textSize="14sp" />
+
+        <com.fxx.library.widget.chart.pie.PieSeekBar
+            android:id="@+id/seekBar0"
+            style="@style/Widget.SeekBar.Normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_description"
+            android:layout_marginTop="15.5dp"
+            android:background="@android:color/transparent"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:progress="0" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
