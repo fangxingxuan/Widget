@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.fxx.library.widget.R;
 import com.fxx.library.widget.common.CircleView;
-import com.wsl.library.widget.R;
 
 import java.util.List;
 
