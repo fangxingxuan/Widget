@@ -1,6 +1,7 @@
 package com.fxx.library.widget.chart.pie;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.fxx.library.widget.R;
 import com.fxx.library.widget.utils.FXWidgetUtils;
 
 import java.util.List;
@@ -54,14 +56,20 @@ public class PieView extends View {
 
     public PieView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs);
     }
 
     public void setListener(Listener listener) {
         this.mListener = listener;
     }
 
-    private void init() {
+    private void init(Context context, AttributeSet attrs) {
+        int centerTextSize = (int) FXWidgetUtils.sp2px(15f, getContext());
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PieView);
+        centerTextSize = a.getDimensionPixelOffset(R.styleable.PieView_fx_center_text_size, centerTextSize);
+        a.recycle();
+
         mRenderPaint = new Paint();
         mRenderPaint.setDither(true);
         mRenderPaint.setAntiAlias(true);
@@ -72,7 +80,7 @@ public class PieView extends View {
         mCenterTextPaint.setAntiAlias(true);
         mCenterTextPaint.setColor(Color.WHITE);
         mCenterTextPaint.setTextAlign(Paint.Align.CENTER);
-        mCenterTextPaint.setTextSize(FXWidgetUtils.sp2px(15f, getContext()));
+        mCenterTextPaint.setTextSize(centerTextSize);
 
     }
 
@@ -244,5 +252,9 @@ public class PieView extends View {
                 mListener.onLess();
             }
         }
+    }
+
+    public void setCenterTextSize(int size) {
+        mCenterTextPaint.setTextSize(size);
     }
 }

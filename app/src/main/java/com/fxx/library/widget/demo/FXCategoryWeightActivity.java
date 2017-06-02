@@ -11,6 +11,7 @@ import com.fxx.library.widget.chart.pie.IPieEntry;
 import com.fxx.library.widget.chart.pie.PieLegendLayout;
 import com.fxx.library.widget.chart.pie.PieDefaultEntry;
 import com.fxx.library.widget.chart.pie.PieView;
+import com.fxx.library.widget.utils.FXWidgetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class FXCategoryWeightActivity extends AppCompatActivity{
         list1.add(new PieDefaultEntry(50, "安全", 0xff8bdaf9));
         list1.add(new PieDefaultEntry(20, "高效", 0xff00b7f1));
         pieView1 = (PieView) findViewById(R.id.pie1);
+//        pieView1.setCenterTextSize((int) FXWidgetUtils.sp2px(20, this));
         pieView1.setPieData(list1);
 
         PieLegendLayout legendLayout = (PieLegendLayout) findViewById(R.id.layout_legend);

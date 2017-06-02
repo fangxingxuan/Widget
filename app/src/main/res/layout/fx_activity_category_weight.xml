@@ -2,16 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fjakdfjalkdsfjlasdfa\nasdfasdfa"
+        android:textSize="16sp"
+        android:textColor="#666"
+        android:gravity="center_horizontal"
+        />
 
     <com.fxx.library.widget.chart.pie.PieView
         android:id="@+id/pie1"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_below="@id/title"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="3dp"
+        app:fx_center_text_size="19sp"
+        />
 
     <com.fxx.library.widget.chart.pie.PieLegendLayout
         android:id="@+id/layout_legend"

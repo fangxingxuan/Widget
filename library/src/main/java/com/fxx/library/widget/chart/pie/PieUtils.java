@@ -1,9 +1,5 @@
 package com.fxx.library.widget.chart.pie;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.util.TypedValue;
-
 /**
  * Created by wsl on 17/5/25.
  */
