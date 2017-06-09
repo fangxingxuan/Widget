@@ -133,8 +133,18 @@ public class PieView extends View {
 
         for (int i = 0; i < size; i++) {
             IPieEntry pieEntry = mPieList.get(i);
+            if(pieEntry.getValue() == 0) {
+                continue;
+            }
             mPathBuffer.reset();
             mRenderPaint.setColor(pieEntry.getColor());
+            if(pieEntry.getValue() == 100) {
+                //等于360度直接画个圆
+                mPathBuffer.addCircle(mBigCircleBox.centerX(), mBigCircleBox.centerY(),
+                        mBigCircleBox.width() / 2, Path.Direction.CW);
+                canvas.drawPath(mPathBuffer, mRenderPaint);
+                break;
+            }
 
             startAngle = (startAngle + lastSweepAngle) % 360;
             float sweepAngle = PieUtils.getSweepAngle(pieEntry.getValue());
