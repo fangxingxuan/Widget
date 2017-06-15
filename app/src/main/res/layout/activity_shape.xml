@@ -8,7 +8,7 @@
     <include layout="@layout/layout_common_toolbar" />
 
     <com.fxx.library.widget.shape.RoundedImageView
-        android:id="@+id/image"
+        android:id="@+id/rounded"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginLeft="100dp"
@@ -20,5 +20,19 @@
         app:siBorderColor="@color/colorBorder"
         app:siBorderWidth="1px"
         app:siRadius="8dp" />
+
+
+    <com.fxx.library.widget.shape.CircularImageView
+        android:id="@+id/circle"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:alpha="1"
+        android:src="@drawable/ic_rounded_image"
+        app:siBorderAlpha="0.5"
+        app:siBorderColor="@color/colorBorder"
+        app:siBorderWidth="1px" />
 
 </LinearLayout>

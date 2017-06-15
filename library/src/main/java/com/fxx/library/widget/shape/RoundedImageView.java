@@ -7,6 +7,9 @@ import com.fxx.library.widget.shape.shader.RoundedShader;
 import com.fxx.library.widget.shape.shader.ShaderHelper;
 
 
+/**
+ * 矩形圆角ImageView
+ */
 public class RoundedImageView extends ShaderImageView {
     private RoundedShader shader;
     public RoundedImageView(Context context) {
