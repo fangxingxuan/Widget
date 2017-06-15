@@ -1,30 +1,33 @@
-package com.fxx.library.widget.demo;
+package com.fxx.library.widget.demo.weight;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-
 import com.fxx.library.widget.chart.pie.IPieEntry;
-import com.fxx.library.widget.chart.pie.PieLegendLayout;
 import com.fxx.library.widget.chart.pie.PieDefaultEntry;
+import com.fxx.library.widget.chart.pie.PieLegendLayout;
 import com.fxx.library.widget.chart.pie.PieView;
-import com.fxx.library.widget.utils.FXWidgetUtils;
+import com.fxx.library.widget.demo.BaseActivity;
+import com.fxx.library.widget.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 测试页面
  * Created by wsl on 17/5/25.
  */
 
-public class FXCategoryWeightActivity extends AppCompatActivity{
+public class WeightActivity extends BaseActivity{
 
-    private PieView pieView1;
+    @BindView(R.id.pie1)
+    PieView pieView1;
 
     private static final int FIRST_DEFAULT_VALUE = 50;
     private static final int SECOND_DEFAULT_VALUE = 20;
@@ -32,14 +35,20 @@ public class FXCategoryWeightActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weight);
+        ButterKnife.bind(this);
 
-        setContentView(R.layout.fx_activity_category_weight);
+        initViews();
+    }
+
+    private void initViews() {
+        attachToolbar("Weight example");
 
 
         List<IPieEntry> list1 = new ArrayList<>();
         list1.add(new PieDefaultEntry(FIRST_DEFAULT_VALUE, "安全", 0xff8bdaf9));
         list1.add(new PieDefaultEntry(SECOND_DEFAULT_VALUE, "高效", 0xff00b7f1));
-        pieView1 = (PieView) findViewById(R.id.pie1);
+
 //        pieView1.setCenterTextSize((int) FXWidgetUtils.sp2px(20, this));
         pieView1.setPieData(list1);
 
