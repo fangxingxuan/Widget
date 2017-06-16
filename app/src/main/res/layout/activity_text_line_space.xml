@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_toolbar"/>
+
+    <com.fxx.library.widget.common.LetterSpacingTextView
+        android:id="@+id/letter"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:text="中文测试"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+
+    <com.fxx.library.widget.common.LetterSpacingTextView
+        android:id="@+id/letter1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:text="中文测试"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        />
+
+    <SeekBar
+        android:id="@+id/seekBar0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        />
+
+
+</LinearLayout>

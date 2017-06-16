@@ -17,6 +17,7 @@
 
         <activity android:name=".weight.WeightActivity"/>
         <activity android:name=".shape.ShapeActivity"/>
+        <activity android:name=".text.TextLineSpaceActivity"/>
 
     </application>
 

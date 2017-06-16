@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.fxx.library.widget.demo.shape.ShapeActivity;
+import com.fxx.library.widget.demo.text.TextLineSpaceActivity;
 import com.fxx.library.widget.demo.weight.WeightActivity;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener{
         List<MainItem> items = new ArrayList<>();
         items.add(new MainItem("Weight"));
         items.add(new MainItem("Shape"));
+        items.add(new MainItem("Text Padding"));
 
         MainAdapter adapter = new MainAdapter(this, items);
         adapter.setListener(this);
@@ -54,6 +56,9 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener{
                 break;
             case 1:
                 intentToActivity(ShapeActivity.class);
+                break;
+            case 2:
+                intentToActivity(TextLineSpaceActivity.class);
                 break;
             default:
                 break;
