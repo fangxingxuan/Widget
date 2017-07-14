@@ -18,6 +18,7 @@
         <activity android:name=".weight.WeightActivity"/>
         <activity android:name=".shape.ShapeActivity"/>
         <activity android:name=".text.TextLineSpaceActivity"/>
+        <activity android:name=".marquee.MarqueeActivity"/>
 
     </application>
 

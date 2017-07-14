@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.fxx.library.widget.demo.marquee.MarqueeActivity;
 import com.fxx.library.widget.demo.shape.ShapeActivity;
 import com.fxx.library.widget.demo.text.TextLineSpaceActivity;
 import com.fxx.library.widget.demo.weight.WeightActivity;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener{
         items.add(new MainItem("Weight"));
         items.add(new MainItem("Shape"));
         items.add(new MainItem("Text Padding"));
+        items.add(new MainItem("Marquee"));
 
         MainAdapter adapter = new MainAdapter(this, items);
         adapter.setListener(this);
@@ -59,6 +61,9 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener{
                 break;
             case 2:
                 intentToActivity(TextLineSpaceActivity.class);
+                break;
+            case 3:
+                intentToActivity(MarqueeActivity.class);
                 break;
             default:
                 break;
