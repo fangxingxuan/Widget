@@ -7,7 +7,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+<<<<<<< HEAD
 import com.fxx.library.widget.demo.marquee.MarqueeActivity;
+=======
+import com.fxx.library.widget.demo.follow.FollowableActivity;
+>>>>>>> c2b41cb930fc5238ded0a0242dee684411912e08
 import com.fxx.library.widget.demo.shape.ShapeActivity;
 import com.fxx.library.widget.demo.text.TextLineSpaceActivity;
 import com.fxx.library.widget.demo.weight.WeightActivity;
@@ -18,10 +22,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements MainAdapter.Listener{
+public class MainActivity extends BaseActivity implements MainAdapter.Listener {
 
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener{
         items.add(new MainItem("Weight"));
         items.add(new MainItem("Shape"));
         items.add(new MainItem("Text Padding"));
+        items.add(new MainItem("Followable View"));
         items.add(new MainItem("Marquee"));
 
         MainAdapter adapter = new MainAdapter(this, items);
@@ -63,6 +67,8 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener{
                 intentToActivity(TextLineSpaceActivity.class);
                 break;
             case 3:
+                intentToActivity(FollowableActivity.class);
+            case 4:
                 intentToActivity(MarqueeActivity.class);
                 break;
             default:
