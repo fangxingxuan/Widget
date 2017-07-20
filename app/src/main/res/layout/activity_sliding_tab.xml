@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.fxx.library.widget.slidingtab.CustomSlidingTabLayout
+                android:id="@+id/sliding_tab1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#8888ee"/>
+
+            <com.fxx.library.widget.slidingtab.CustomSlidingTabLayout
+                android:id="@+id/sliding_tab2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#ee8888"/>
+
+            <com.fxx.library.widget.slidingtab.CustomSlidingTabLayout
+                android:id="@+id/sliding_tab3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#88ee88"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

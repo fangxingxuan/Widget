@@ -7,9 +7,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.fxx.library.widget.demo.marquee.MarqueeActivity;
 import com.fxx.library.widget.demo.follow.FollowableActivity;
 import com.fxx.library.widget.demo.shape.ShapeActivity;
+import com.fxx.library.widget.demo.slidingtab.SlidingTabActivity;
 import com.fxx.library.widget.demo.text.TextLineSpaceActivity;
 import com.fxx.library.widget.demo.weight.WeightActivity;
 
@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener {
         items.add(new MainItem("Shape"));
         items.add(new MainItem("Text Padding"));
         items.add(new MainItem("Followable View"));
-        items.add(new MainItem("Marquee"));
+        items.add(new MainItem("SlidingTab"));
 
         MainAdapter adapter = new MainAdapter(this, items);
         adapter.setListener(this);
@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener {
             case 3:
                 intentToActivity(FollowableActivity.class);
             case 4:
-                intentToActivity(MarqueeActivity.class);
+                intentToActivity(SlidingTabActivity.class);
                 break;
             default:
                 break;

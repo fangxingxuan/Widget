@@ -21,6 +21,7 @@
         <activity android:name=".text.TextLineSpaceActivity"/>
         <activity android:name=".follow.FollowableActivity"/>
         <activity android:name=".marquee.MarqueeActivity"/>
+        <activity android:name=".slidingtab.SlidingTabActivity"/>
 
     </application>
 
