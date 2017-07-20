@@ -8,18 +8,18 @@ import android.util.AttributeSet;
  * 底部横线自适应text文本宽度，而不是撑满整个tabView
  */
 
-public class CustomSlidingTabLayout extends SlidingTabLayout {
+public class ExtendSlidingTabLayout extends SlidingTabLayout {
     private SlidingTabStrip mTabStrip;
 
-    public CustomSlidingTabLayout(Context context) {
+    public ExtendSlidingTabLayout(Context context) {
         this(context, null);
     }
 
-    public CustomSlidingTabLayout(Context context, AttributeSet attrs) {
+    public ExtendSlidingTabLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CustomSlidingTabLayout(Context context, AttributeSet attrs, int defStyle) {
+    public ExtendSlidingTabLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

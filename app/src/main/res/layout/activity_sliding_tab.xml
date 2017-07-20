@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.fxx.library.widget.slidingtab.CustomSlidingTabLayout
+            <com.fxx.library.widget.slidingtab.ExtendSlidingTabLayout
                 android:id="@+id/sliding_tab1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -29,7 +29,7 @@
                 android:layout_height="200dp"
                 android:background="#8888ee"/>
 
-            <com.fxx.library.widget.slidingtab.CustomSlidingTabLayout
+            <com.fxx.library.widget.slidingtab.ExtendSlidingTabLayout
                 android:id="@+id/sliding_tab2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -40,7 +40,7 @@
                 android:layout_height="200dp"
                 android:background="#ee8888"/>
 
-            <com.fxx.library.widget.slidingtab.CustomSlidingTabLayout
+            <com.fxx.library.widget.slidingtab.ExtendSlidingTabLayout
                 android:id="@+id/sliding_tab3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

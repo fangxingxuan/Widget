@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 
 import com.fxx.library.widget.demo.BaseActivity;
 import com.fxx.library.widget.demo.R;
-import com.fxx.library.widget.slidingtab.CustomSlidingTabLayout;
+import com.fxx.library.widget.slidingtab.ExtendSlidingTabLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,11 +18,11 @@ import butterknife.ButterKnife;
 
 public class SlidingTabActivity extends BaseActivity {
 
-    @BindView(R.id.sliding_tab1) CustomSlidingTabLayout sliding_tab1;
+    @BindView(R.id.sliding_tab1) ExtendSlidingTabLayout sliding_tab1;
     @BindView(R.id.pager1) ViewPager pager1;
-    @BindView(R.id.sliding_tab2) CustomSlidingTabLayout sliding_tab2;
+    @BindView(R.id.sliding_tab2) ExtendSlidingTabLayout sliding_tab2;
     @BindView(R.id.pager2) ViewPager pager2;
-    @BindView(R.id.sliding_tab3) CustomSlidingTabLayout sliding_tab3;
+    @BindView(R.id.sliding_tab3) ExtendSlidingTabLayout sliding_tab3;
     @BindView(R.id.pager3) ViewPager pager3;
 
     @Override
