@@ -63,10 +63,25 @@
 
     <!-- 跑马灯相关属性-->
     <declare-styleable name="MarqueeView">
-        <attr name="marqueeInterval" format="integer" />
-        <attr name="marqueeAnimDuration" format="integer" />
-        <attr name="marqueeAnimIn" format="reference" />
-        <attr name="marqueeAnimOut" format="reference" />
+        <attr name="marqueeInterval" format="integer"/>
+        <attr name="marqueeAnimDuration" format="integer"/>
+        <attr name="marqueeAnimIn" format="reference"/>
+        <attr name="marqueeAnimOut" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="LinearStepView">
+        <attr name="lsvGapFixed" format="boolean"/>  <!-- step之间的间隔是否固定，固定则可滚动，否则match_parent -->
+        <attr name="lsvGapSize" format="dimension"/> <!-- step之间的间隔 -->
+        <attr name="lsvSteppedDrawable" format="reference"/> <!-- 已完成step样式 -->
+        <attr name="lsvSteppingDrawable" format="reference"/> <!-- 进行中step样式 -->
+        <attr name="lsvStepDefaultDrawable" format="reference"/> <!-- 默认step样式 -->
+        <attr name="lsvStepMax" format="integer"/> <!-- 所有step数目 -->
+        <attr name="lsvStepCurrentPos" format="integer"/> <!-- 当前选中step位置 -->
+        <attr name="lsvSteppedLineColor" format="color"/> <!-- 已完成step线的颜色 -->
+        <attr name="lsvStepLineColor" format="color"/> <!-- 默认step线的颜色 -->
+        <attr name="lsvSteppedTextColor" format="color"/> <!-- 已完成step描述文字颜色 -->
+        <attr name="lsvSteppingTextColor" format="color"/> <!-- 进行中step描述文字颜色 -->
+        <attr name="lsvStepDefaultTextColor" format="color"/> <!-- 默认step描述文字颜色 -->
     </declare-styleable>
 
 </resources>

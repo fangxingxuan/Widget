@@ -26,4 +26,8 @@
         <item name="android:thumbOffset">8.0dip</item>
     </style>
 
+    <style name="StepProgressBarHorizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
+
+    </style>
+
 </resources>

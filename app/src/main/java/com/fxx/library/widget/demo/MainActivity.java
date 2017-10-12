@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.fxx.library.widget.demo.follow.FollowableActivity;
+import com.fxx.library.widget.demo.linearstep.LinearStepActivity;
 import com.fxx.library.widget.demo.shape.ShapeActivity;
 import com.fxx.library.widget.demo.slidingtab.SlidingTabActivity;
 import com.fxx.library.widget.demo.text.TextLineSpaceActivity;
@@ -41,6 +42,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener {
         items.add(new MainItem("Text Padding"));
         items.add(new MainItem("Followable View"));
         items.add(new MainItem("SlidingTab"));
+        items.add(new MainItem("LinearStepView"));
 
         MainAdapter adapter = new MainAdapter(this, items);
         adapter.setListener(this);
@@ -65,8 +67,12 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener {
                 break;
             case 3:
                 intentToActivity(FollowableActivity.class);
+                break;
             case 4:
                 intentToActivity(SlidingTabActivity.class);
+                break;
+            case 5:
+                intentToActivity(LinearStepActivity.class);
                 break;
             default:
                 break;

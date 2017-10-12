@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_toolbar"/>
+
+    <com.fxx.library.widget.common.LinearStepView
+        android:id="@+id/step_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:lsvGapFixed="false"
+        app:lsvGapSize="10dp"
+        app:lsvStepCurrentPos="4"
+        app:lsvStepLineColor="#00e080"
+        app:lsvStepMax="6"
+        app:lsvSteppedLineColor="#e2001e"/>
+
+    <com.fxx.library.widget.common.LinearStepView
+        android:id="@+id/step_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:lsvGapFixed="false"
+        app:lsvGapSize="10dp"
+        app:lsvStepCurrentPos="4"
+        app:lsvStepMax="6"
+        app:lsvSteppedLineColor="#00e080"/>
+
+    <com.fxx.library.widget.common.LinearStepView
+        android:id="@+id/step_view3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:lsvGapFixed="false"
+        app:lsvGapSize="10dp"
+        app:lsvStepCurrentPos="4"
+        app:lsvStepLineColor="#00e080"
+        app:lsvStepMax="6"
+        app:lsvSteppedLineColor="#e2001e"/>
+
+</LinearLayout>

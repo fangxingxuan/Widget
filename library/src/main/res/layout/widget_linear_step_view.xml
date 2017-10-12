@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/h_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/layout_content"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/StepProgressBarHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#eaeaea"/>
+
+        <LinearLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!--</LinearLayout>-->
+
+</HorizontalScrollView>
