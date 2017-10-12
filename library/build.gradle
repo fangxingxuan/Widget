@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 109
-        versionName "1.0.9"
+        versionCode 110
+        versionName "1.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -27,6 +27,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     provided 'com.android.support:appcompat-v7:25.3.1'
-    compile group: 'net.sf.kxml', name: 'kxml2', version:'2.3.0'
+    compile group: 'net.sf.kxml', name: 'kxml2', version: '2.3.0'
     testCompile 'junit:junit:4.12'
 }
