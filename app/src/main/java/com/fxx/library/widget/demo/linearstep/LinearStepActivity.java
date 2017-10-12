@@ -37,6 +37,7 @@ public class LinearStepActivity extends BaseActivity {
         LinearStepView<String> stepView1 = (LinearStepView) findViewById(R.id.step_view1);
         LinearStepView<String> stepView2 = (LinearStepView) findViewById(R.id.step_view2);
         LinearStepView<String> stepView3 = (LinearStepView) findViewById(R.id.step_view3);
+        LinearStepView<String> stepView4 = (LinearStepView) findViewById(R.id.step_view4);
 
         LinearStepView.StepAdapter<String> adapter1 = newAdapter();
         LinearStepView.StepAdapter<String> adapter2 = newAdapter();
@@ -69,6 +70,13 @@ public class LinearStepActivity extends BaseActivity {
         stepView3.setSteppedLineColor(Color.GREEN);
         adapter1.setSteps(getSteps(5));
         stepView3.setAdapter(adapter1);
+
+        stepView4.setStepMax(5);
+        stepView4.setStepCurrent(4);
+        stepView4.setStepLineHeight((int) FXWidgetUtils.dp2px(2, this));
+        stepView4.setStepLineColor(Color.LTGRAY);
+        adapter1.setSteps(getSteps(5));
+        stepView4.setAdapter(adapter1);
     }
 
     private LinearStepView.StepAdapter<String> newAdapter() {

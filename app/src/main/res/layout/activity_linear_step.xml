@@ -43,4 +43,18 @@
         app:lsvStepMax="6"
         app:lsvSteppedLineColor="#e2001e"/>
 
+    <com.fxx.library.widget.common.LinearStepView
+        android:id="@+id/step_view4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:lsvGapFixed="false"
+        app:lsvGapSize="10dp"
+        app:lsvStepCurrentPos="4"
+        app:lsvStepLineColor="#00e080"
+        app:lsvStepMax="5"
+        app:lsvSteppedDrawable="@drawable/fw_ic_stepped"
+        app:lsvSteppedLineColor="#e2001e"
+        app:lsvSteppingDrawable="@drawable/fw_ic_stepping"/>
+
 </LinearLayout>
