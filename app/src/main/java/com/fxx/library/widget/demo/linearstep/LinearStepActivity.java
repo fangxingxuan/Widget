@@ -46,14 +46,14 @@ public class LinearStepActivity extends BaseActivity {
         //要先设置Max再设置Current，否则可能得到不正确的Current
         //这个值会被setSteps刷新
         stepView1.setStepMax(5);
-        stepView1.setStepCurrent(1);
+        stepView1.setStepCurrent(0);
         stepView1.setStepLineHeight((int) FXWidgetUtils.dp2px(2, this));
         stepView1.setStepLineColor(Color.BLUE);
         adapter1.setSteps(getSteps(5));
         stepView1.setAdapter(adapter1);
 
         stepView2.setStepMax(3);
-        stepView2.setStepCurrent(3);
+        stepView2.setStepCurrent(2);
         stepView2.setStepLineHeight((int) FXWidgetUtils.dp2px(2, this));
         stepView2.setStepLineColor(Color.LTGRAY);
         stepView2.setSteppedLineColor(Color.RED);
@@ -64,7 +64,7 @@ public class LinearStepActivity extends BaseActivity {
         stepView2.setAdapter(adapter2);
 
         stepView3.setStepMax(5);
-        stepView3.setStepCurrent(4);
+        stepView3.setStepCurrent(3);
         stepView3.setStepLineHeight((int) FXWidgetUtils.dp2px(4, this));
         stepView3.setStepLineColor(Color.YELLOW);
         stepView3.setSteppedLineColor(Color.GREEN);
@@ -72,7 +72,7 @@ public class LinearStepActivity extends BaseActivity {
         stepView3.setAdapter(adapter1);
 
         stepView4.setStepMax(5);
-        stepView4.setStepCurrent(4);
+        stepView4.setStepCurrent(2);
         stepView4.setStepLineHeight((int) FXWidgetUtils.dp2px(2, this));
         stepView4.setStepLineColor(Color.LTGRAY);
         adapter1.setSteps(getSteps(5));
@@ -88,9 +88,9 @@ public class LinearStepActivity extends BaseActivity {
             }
 
             @Override
-            public void onStepSelected(View view, View lastView, String s, int currentPos, int lastPos) {
-                Toast.makeText(LinearStepActivity.this, "选中了=" + currentPos + " 上一步=" + lastPos + " " + s, Toast
-                        .LENGTH_SHORT).show();
+            public void onStepSelected(View view, View lastView, int currentPos, int lastPos) {
+                Toast.makeText(LinearStepActivity.this, "选中了(" + currentPos + ")=" + getStep(currentPos) + " 上一步(" +
+                        lastPos + ")=" + getStep(lastPos), Toast.LENGTH_SHORT).show();
                 if (lastView != null)
                     ((TextView) lastView).setTextColor(Color.rgb(0x46, 0x46, 0x46));
                 if (view != null)
@@ -113,7 +113,7 @@ public class LinearStepActivity extends BaseActivity {
     private List<String> getSteps(int size) {
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            list.add("第" + (i + 1) + "步");
+            list.add("第" + i + "步");
         }
         return list;
     }

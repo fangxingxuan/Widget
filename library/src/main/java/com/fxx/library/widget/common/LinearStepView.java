@@ -46,7 +46,7 @@ public class LinearStepView<T> extends BaseCustomView {
     private final int TOP_MARGIN = (int) FXWidgetUtils.dp2px(12, getContext());
     private final int STEP_VIEW_SIZE = (int) FXWidgetUtils.dp2px(17, getContext());
     private static final int STEP_MAX = 5;
-    private static final int CURRENT_POS = 3;
+    private static final int CURRENT_POS = 2;
     private static final int RED_COLOR = Color.rgb(0xe0, 0x00, 0x1e);
     private static final int GRAY_COLOR_LIGHT = Color.rgb(0xea, 0xea, 0xea);
     private static final int GRAY_COLOR = Color.rgb(0x99, 0x99, 0x99);
@@ -61,7 +61,7 @@ public class LinearStepView<T> extends BaseCustomView {
     private Drawable stepDrawable;
     private int stepMax = STEP_MAX;
     private int currentPos = CURRENT_POS;
-    private int lastPos = currentPos;
+    private int lastPos = -1;
     private View lastAdditionalView = null;
     private int steppedLineColor = RED_COLOR;
     private int stepLineColor = GRAY_COLOR_LIGHT;
@@ -94,9 +94,8 @@ public class LinearStepView<T> extends BaseCustomView {
     protected void initAttributes(TypedArray a) {
         gapFixed = a.getBoolean(R.styleable.LinearStepView_lsvGapFixed, false);
         gapSize = a.getDimension(R.styleable.LinearStepView_lsvGapSize, GAP_SIZE);
-        stepMax = a.getInt(R.styleable.LinearStepView_lsvStepMax, 5);
-        currentPos = a.getInt(R.styleable.LinearStepView_lsvStepCurrentPos, 4);
-        lastPos = currentPos;
+        stepMax = a.getInt(R.styleable.LinearStepView_lsvStepMax, STEP_MAX);
+        currentPos = a.getInt(R.styleable.LinearStepView_lsvStepCurrentPos, CURRENT_POS);
         steppedLineColor = a.getColor(R.styleable.LinearStepView_lsvSteppedLineColor, RED_COLOR);
         stepLineColor = a.getColor(R.styleable.LinearStepView_lsvStepLineColor, GRAY_COLOR_LIGHT);
         steppedDrawable = a.getDrawable(R.styleable.LinearStepView_lsvSteppedDrawable);
@@ -134,11 +133,11 @@ public class LinearStepView<T> extends BaseCustomView {
         dataObserver = new StepDataObserver();
     }
 
-    //计算当前步骤在全局中的比例，比如当前3，一共5，则刚好进行到中间
+    //计算当前步骤在全局中的比例，比如当前(0,1,2,3,4)=2，一共5，则刚好进行到中间
     private float getRatio() {
-        if (currentPos <= 1 || stepMax == 1)
+        if (currentPos <= 0 || stepMax == 1)
             return 0;
-        return (float) (currentPos - 1) / (stepMax - 1);
+        return (float) currentPos / (stepMax - 1);
     }
 
     public void setSteppedLineColor(int color) {
@@ -159,11 +158,11 @@ public class LinearStepView<T> extends BaseCustomView {
         updateProgressDrawable();
     }
 
-    //从1开始
+    //从0开始
     public void setStepCurrent(int currentPos) {
-        if (currentPos < 1)
-            currentPos = 1;
-        if (currentPos > stepMax)
+        if (currentPos < 0)
+            currentPos = 0;
+        if (currentPos >= stepMax)
             currentPos = stepMax;
         this.currentPos = currentPos;
         updateProgressDrawable();
@@ -214,13 +213,13 @@ public class LinearStepView<T> extends BaseCustomView {
             super.onChanged();
             layout_content.removeAllViews();
             stepMax = stepAdapter.steps.size();
-            for (int i = 1; i <= stepMax; i++) {
-                T data = stepAdapter.steps.get(i - 1);
+            for (int i = 0; i < stepMax; i++) {
+                T data = stepAdapter.steps.get(i);
                 //绑定当前step，返回一个附加View（可以为null），添加到当前step中去
                 View additionalView = stepAdapter.onBindStep(data, i);
                 addViewToStep(i, additionalView);
                 if (currentPos == i) {//通知当前选中的step
-                    stepAdapter.onStepSelected(additionalView, lastAdditionalView, data, i, lastPos);
+                    stepAdapter.onStepSelected(additionalView, lastAdditionalView, i, lastPos);
                     lastPos = currentPos;
                     lastAdditionalView = additionalView;
                 }
@@ -295,8 +294,10 @@ public class LinearStepView<T> extends BaseCustomView {
         step.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                T data = stepAdapter.steps.get(pos - 1);
-                stepAdapter.onStepSelected(additionalView, lastAdditionalView, data, pos, lastPos);
+                if (pos == lastPos)
+                    return;
+
+                stepAdapter.onStepSelected(additionalView, lastAdditionalView, pos, lastPos);
                 lastPos = pos;
                 lastAdditionalView = additionalView;
             }
@@ -343,6 +344,18 @@ public class LinearStepView<T> extends BaseCustomView {
             notifyChanged();
         }
 
+        public T getStep(int pos) {
+            if (steps == null || steps.isEmpty()) {
+                return null;
+            }
+            if (pos < 0 || pos >= steps.size()) {
+                return null;
+                // throw new IndexOutOfBoundsException("get step index " + pos + ", current size " + steps.size() +
+                // "!");
+            }
+            return steps.get(pos);
+        }
+
         public void registerObserver(DataObserver observer) {
             observable.registerObserver(observer);
         }
@@ -359,7 +372,43 @@ public class LinearStepView<T> extends BaseCustomView {
         abstract public View onBindStep(T t, int position);
 
         //选中某个step
-        abstract public void onStepSelected(View view, View lastView, T t, int currentPos, int lastPos);
+        abstract public void onStepSelected(View view, View lastView, int currentPos, int lastPos);
+    }
+
+    public boolean isGapFixed() {
+        return gapFixed;
+    }
+
+    public float getGapSize() {
+        return gapSize;
+    }
+
+    public int getGapMargin() {
+        return gapMargin;
+    }
+
+    public int getStepLineHeight() {
+        return stepLineHeight;
+    }
+
+    public int getStepMax() {
+        return stepMax;
+    }
+
+    public int getCurrentPos() {
+        return currentPos;
+    }
+
+    public int getLastPos() {
+        return lastPos;
+    }
+
+    public View getLastAdditionalView() {
+        return lastAdditionalView;
+    }
+
+    public StepAdapter<T> getStepAdapter() {
+        return stepAdapter;
     }
 
     public static class Observable<T> {
