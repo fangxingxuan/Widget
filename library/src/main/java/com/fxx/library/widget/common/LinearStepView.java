@@ -291,7 +291,7 @@ public class LinearStepView<T> extends BaseCustomView {
             step.setBackgroundDrawable(steppingDrawable);
         }
         //点击某个步骤切换
-        step.setOnClickListener(new OnClickListener() {
+        layout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (pos == lastPos)
