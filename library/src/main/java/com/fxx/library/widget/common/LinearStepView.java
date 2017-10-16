@@ -46,7 +46,7 @@ public class LinearStepView<T> extends BaseCustomView {
     private final int TOP_MARGIN = (int) FXWidgetUtils.dp2px(12, getContext());
     private final int STEP_VIEW_SIZE = (int) FXWidgetUtils.dp2px(17, getContext());
     private static final int STEP_MAX = 5;
-    private static final int CURRENT_POS = 2;
+    private static final int CURRENT_POS = 0;
     private static final int RED_COLOR = Color.rgb(0xe0, 0x00, 0x1e);
     private static final int GRAY_COLOR_LIGHT = Color.rgb(0xea, 0xea, 0xea);
     private static final int GRAY_COLOR = Color.rgb(0x99, 0x99, 0x99);
@@ -151,7 +151,7 @@ public class LinearStepView<T> extends BaseCustomView {
     }
 
     //要先设置Max再设置Current，否则可能得到不正确的Current
-    public void setStepMax(int max) {
+    private void setStepMax(int max) {
         if (max < 1)
             max = 1;
         stepMax = max;
@@ -162,10 +162,12 @@ public class LinearStepView<T> extends BaseCustomView {
     public void setStepCurrent(int currentPos) {
         if (currentPos < 0)
             currentPos = 0;
-        if (currentPos >= stepMax)
-            currentPos = stepMax;
+        // if (currentPos >= stepMax)
+        //     currentPos = stepMax;
         this.currentPos = currentPos;
-        updateProgressDrawable();
+        if (stepAdapter != null) {
+            stepAdapter.notifyChanged();
+        }
     }
 
     private void updateProgressDrawable() {
@@ -175,8 +177,9 @@ public class LinearStepView<T> extends BaseCustomView {
         //一定要先设置Drawable再设置Level
         progress.setProgressDrawable(clipDrawable);
         clipDrawable.setLevel((int) (getRatio() * 10000));
-        progress.setMax(stepMax);
-        progress.setProgress(currentPos);
+        int progress = (stepMax - 1) > 0 ? (stepMax - 1) : 0;
+        this.progress.setMax(progress);
+        this.progress.setProgress(currentPos);
     }
 
     public void setStepLineHeight(int height) {
