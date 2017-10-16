@@ -3,7 +3,6 @@ package com.fxx.library.widget.demo.linearstep;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -45,8 +44,6 @@ public class LinearStepActivity extends BaseActivity {
         LinearStepView.StepAdapter<String> adapter3 = newAdapter();
 
 
-        //要先设置Max再设置Current，否则可能得到不正确的Current
-        //这个值会被setSteps刷新
         stepView1.setStepCurrent(0);
         stepView1.setStepLineHeight((int) FXWidgetUtils.dp2px(2, this));
         stepView1.setStepLineColor(Color.BLUE);
@@ -63,19 +60,12 @@ public class LinearStepActivity extends BaseActivity {
         adapter2.setSteps(getSteps(3));
         stepView2.setAdapter(adapter2);
 
-        stepView3.setStepCurrent(4);
+        stepView3.setStepCurrent(3);
         stepView3.setStepLineHeight((int) FXWidgetUtils.dp2px(4, this));
         stepView3.setStepLineColor(Color.YELLOW);
         stepView3.setSteppedLineColor(Color.GREEN);
         adapter3.setSteps(getSteps(5));
         stepView3.setAdapter(adapter3);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stepView3.setStepCurrent(3);
-            }
-        }, 3000);
 
         stepView4.setStepCurrent(2);
         stepView4.setStepLineHeight((int) FXWidgetUtils.dp2px(2, this));
