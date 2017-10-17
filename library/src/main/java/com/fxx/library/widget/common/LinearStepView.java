@@ -300,6 +300,10 @@ public class LinearStepView<T> extends BaseCustomView {
                 if (pos == lastPos)
                     return;
 
+                if (pos > currentPos) {
+                    return;
+                }
+
                 stepAdapter.onStepSelected(additionalView, lastAdditionalView, pos, lastPos);
                 lastPos = pos;
                 lastAdditionalView = additionalView;
@@ -345,6 +349,10 @@ public class LinearStepView<T> extends BaseCustomView {
                 this.steps = new ArrayList<>();
             }
             notifyChanged();
+        }
+
+        public List<T> getSteps() {
+            return steps;
         }
 
         public T getStep(int pos) {
