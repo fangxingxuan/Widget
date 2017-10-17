@@ -67,7 +67,7 @@ public class AvatarGroupActivity extends BaseActivity {
         avatar_group_lor.setChildSize((int) FXWidgetUtils.dp2px(52, this), (int) FXWidgetUtils.dp2px(52, this));
         avatar_group_lor.setOnDisplayListener(onDisplayListener);
         avatar_group_lor.setOnGenerateViewListener(onGenerateViewListener);
-        avatar_group_lor.setShowMore(true);
+        avatar_group_lor.setShowMore(false);
         avatar_group_lor.setDatas(colors.subList(0, 5));
 
         //逆向
@@ -98,7 +98,7 @@ public class AvatarGroupActivity extends BaseActivity {
         avatar_group_rol_invert.setChildSize((int) FXWidgetUtils.dp2px(32, this), (int) FXWidgetUtils.dp2px(32, this));
         avatar_group_rol_invert.setOnDisplayListener(onDisplayListener);
         avatar_group_rol_invert.setOnGenerateViewListener(onGenerateViewListener);
-        avatar_group_rol_invert.setShowMore(true);
+        avatar_group_rol_invert.setShowMore(false);
         avatar_group_rol_invert.setDatas(colors.subList(0, 5));
     }
 
