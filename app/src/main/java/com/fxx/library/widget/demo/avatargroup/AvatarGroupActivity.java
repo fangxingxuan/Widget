@@ -48,11 +48,7 @@ public class AvatarGroupActivity extends BaseActivity {
                 () {
             @Override
             public void onDisplay(Context context, Integer color, ImageView imageView) {
-                if (color == null) {
-                    imageView.setImageResource(R.drawable.fx_group_avatar_more);
-                } else {
-                    imageView.setImageDrawable(new ColorDrawable(color));
-                }
+                imageView.setImageDrawable(new ColorDrawable(color));
             }
         };
 
@@ -71,10 +67,8 @@ public class AvatarGroupActivity extends BaseActivity {
         avatar_group_lor.setChildSize((int) FXWidgetUtils.dp2px(52, this), (int) FXWidgetUtils.dp2px(52, this));
         avatar_group_lor.setOnDisplayListener(onDisplayListener);
         avatar_group_lor.setOnGenerateViewListener(onGenerateViewListener);
-        avatar_group_lor.setMax(5);
-        avatar_group_lor.setAllSize(colors.size());
         avatar_group_lor.setShowMore(true);
-        avatar_group_lor.setDatas(colors);
+        avatar_group_lor.setDatas(colors.subList(0, 5));
 
         //逆向
         avatar_group_lor_invert.setInvert(true);
@@ -83,10 +77,9 @@ public class AvatarGroupActivity extends BaseActivity {
         avatar_group_lor_invert.setChildSize((int) FXWidgetUtils.dp2px(52, this), (int) FXWidgetUtils.dp2px(52, this));
         avatar_group_lor_invert.setOnDisplayListener(onDisplayListener);
         avatar_group_lor_invert.setOnGenerateViewListener(onGenerateViewListener);
-        avatar_group_lor_invert.setMax(5);
-        avatar_group_lor_invert.setAllSize(colors.size());
         avatar_group_lor_invert.setShowMore(true);
-        avatar_group_lor_invert.setDatas(colors);
+        avatar_group_lor_invert.setMoreDrawableResId(R.drawable.ic_rounded_image);
+        avatar_group_lor_invert.setDatas(colors.subList(0, 5));
 
 
         /////////////////////////////// 右边覆盖左边 /////////////////////////////////
@@ -95,10 +88,8 @@ public class AvatarGroupActivity extends BaseActivity {
         avatar_group_rol.setChildSize((int) FXWidgetUtils.dp2px(32, this), (int) FXWidgetUtils.dp2px(32, this));
         avatar_group_rol.setOnDisplayListener(onDisplayListener);
         avatar_group_rol.setOnGenerateViewListener(onGenerateViewListener);
-        avatar_group_rol.setMax(5);
-        avatar_group_rol.setAllSize(colors.size());
         avatar_group_rol.setShowMore(true);
-        avatar_group_rol.setDatas(colors);
+        avatar_group_rol.setDatas(colors.subList(0, 5));
 
         //逆向
         avatar_group_rol_invert.setInvert(true);
@@ -107,10 +98,8 @@ public class AvatarGroupActivity extends BaseActivity {
         avatar_group_rol_invert.setChildSize((int) FXWidgetUtils.dp2px(32, this), (int) FXWidgetUtils.dp2px(32, this));
         avatar_group_rol_invert.setOnDisplayListener(onDisplayListener);
         avatar_group_rol_invert.setOnGenerateViewListener(onGenerateViewListener);
-        avatar_group_rol_invert.setMax(5);
-        avatar_group_rol_invert.setAllSize(colors.size());
         avatar_group_rol_invert.setShowMore(true);
-        avatar_group_rol_invert.setDatas(colors);
+        avatar_group_rol_invert.setDatas(colors.subList(0, 5));
     }
 
     private CircleImageView genImageView() {

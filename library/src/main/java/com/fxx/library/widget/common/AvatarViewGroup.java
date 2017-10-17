@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.fxx.library.widget.R;
+import com.fxx.library.widget.utils.FXWidgetUtils;
+
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
 public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
 
     private boolean isInvert = false;//是否逆向展示
-    private int mOverlap;
+    private int mOverlap = (int) FXWidgetUtils.dp2px(6, getContext());
     private Orientation orientation = Orientation.LOR;//覆盖方向
     private List<T> mDatas;
     private OnDisplayListener<T> mDisplayListener;
@@ -26,8 +29,8 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
     private int childWidth;
     private int childHeight;
 
-    private int mAllSize;//数据集所有数据size
-    private int max = 5;
+    private int moreDrawableResId;
+
     private boolean showMore;//显示更多
 
     private static final String TAG = AvatarViewGroup.class.getSimpleName();
@@ -35,15 +38,20 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
     private SparseArray<ImageView> mSparseArray = new SparseArray<>();
 
     public AvatarViewGroup(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public AvatarViewGroup(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public AvatarViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        moreDrawableResId = R.drawable.fw_group_avatar_more;
     }
 
     @Override
@@ -88,20 +96,29 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
         int left = getPaddingLeft() + (childCount - 1) * (childWidth - mOverlap);
 
         if (orientation == Orientation.LOR) {
-            for (int i = 0; i < childCount; i++) {
-                ImageView child = (ImageView) getChildAt(i);
+            ImageView child = null;
+            if (showMore) {
+                child = (ImageView) getChildAt(0);
+                child.setImageResource(moreDrawableResId);
+
+                int lc = left;
+                int tc = top;
+                int rc = lc + childWidth;
+                int bc = tc + childHeight;
+
+                child.layout(lc, tc, rc, bc);
+                left -= childWidth - mOverlap;
+            }
+            for (int i = 0; i < mDatas.size(); i++) {
+                child = (ImageView) getChildAt(showMore ? i + 1 : i);
                 if (mDisplayListener != null) {
-                    if (showMore && mAllSize > max && i == 0) {//最后一个头像的显示，由于是从右向左，所以是第一个位置
-                        mDisplayListener.onDisplay(getContext(), null, child);
+                    T lorData;
+                    if (isInvert) {
+                        lorData = mDatas.get(i);
                     } else {
-                        T lorData;
-                        if (isInvert) {
-                            lorData = mDatas.get(childCount - 1 - i);
-                        } else {
-                            lorData = mDatas.get(i);
-                        }
-                        mDisplayListener.onDisplay(getContext(), lorData, child);
+                        lorData = mDatas.get(mDatas.size() - 1 - i);
                     }
+                    mDisplayListener.onDisplay(getContext(), lorData, child);
                 }
 
                 int lc = left;
@@ -115,20 +132,29 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
                 left -= childWidth - mOverlap;
             }
         } else {
-            for (int i = childCount - 1; i >= 0; i--) {
-                ImageView child = (ImageView) getChildAt(i);
+            ImageView child = null;
+            if (showMore) {
+                child = (ImageView) getChildAt(childCount - 1);
+                child.setBackgroundResource(moreDrawableResId);
+
+                int lc = left;
+                int tc = top;
+                int rc = lc + childWidth;
+                int bc = tc + childHeight;
+
+                child.layout(lc, tc, rc, bc);
+                left -= childWidth - mOverlap;
+            }
+            for (int i = mDatas.size() - 1; i >= 0; i--) {
+                child = (ImageView) getChildAt(i);
                 if (mDisplayListener != null) {
-                    if (showMore && mAllSize > max && i == childCount - 1) {//最后一个头像的显示，由于是从左向右，所以是最后一个位置
-                        mDisplayListener.onDisplay(getContext(), null, child);
+                    T rolData;
+                    if (isInvert) {
+                        rolData = mDatas.get(mDatas.size() - 1 - i);
                     } else {
-                        T rolData;
-                        if (isInvert) {
-                            rolData = mDatas.get(childCount - 1 - i);
-                        } else {
-                            rolData = mDatas.get(i);
-                        }
-                        mDisplayListener.onDisplay(getContext(), rolData, child);
+                        rolData = mDatas.get(i);
                     }
+                    mDisplayListener.onDisplay(getContext(), rolData, child);
                 }
 
                 int lc = left;
@@ -180,6 +206,11 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
         mOverlap = overlap;
     }
 
+    public void setMoreDrawableResId(int moreDrawableResId) {
+        this.moreDrawableResId = moreDrawableResId;
+        requestLayout();
+    }
+
     public void setOverOrientation(Orientation orientation) {
         this.orientation = orientation;
         requestLayout();
@@ -206,14 +237,15 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
         }
 
         //管理缓存View
-        if (getChildCount() > datas.size()) {
-            for (int i = datas.size(); i < getChildCount(); i++) {
+        int realChildCount = getRealChildCount(datas.size());
+        if (getChildCount() > realChildCount) {
+            for (int i = realChildCount; i < getChildCount(); i++) {
                 mSparseArray.remove(i);
             }
-            removeViews(datas.size(), getChildCount() - datas.size());
+            removeViews(realChildCount, getChildCount() - realChildCount);
         }
 
-        for (int i = 0; i < getRealChildCount(datas.size()); i++) {
+        for (int i = 0; i < realChildCount; i++) {
             ImageView view = getCachedView(i);
             if (view == null) {
                 view = mGenerateViewListener.getView(i);
@@ -249,17 +281,6 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
     }
 
     /**
-     * 必须要设置setAllSize才能生效，否则将根据剧数据集显示所有数据
-     *
-     * @param max
-     */
-    public void setMax(int max) {
-        if (max > 0) {
-            this.max = max;
-        }
-    }
-
-    /**
      * 只有当数据集size（mAllSize）超过了max的是时候才生效
      *
      * @param showMore
@@ -273,20 +294,7 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
     }
 
     public int getRealChildCount(int size) {
-        if (mAllSize > max && size >= max) {
-            return showMore ? max + 1 : max;
-        } else {
-            return size;
-        }
-    }
-
-    /**
-     * 需要根据所有数据size决定是否显示更多的view
-     *
-     * @param allSize
-     */
-    public void setAllSize(int allSize) {
-        mAllSize = allSize;
+        return showMore ? size + 1 : size;
     }
 
     public void setInvert(boolean invert) {
