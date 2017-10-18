@@ -154,8 +154,6 @@ public class LinearStepView<T> extends BaseCustomView {
     public void setSelectedPos(int selectedPos) {
         if (this.selectedPos == selectedPos)
             return;
-        // if (selectedPos > stepMax)
-        //     selectedPos = stepMax;
         if (selectedPos < 0)
             selectedPos = 0;
         this.selectedPos = selectedPos;
@@ -176,8 +174,6 @@ public class LinearStepView<T> extends BaseCustomView {
     public void setStepCurrent(int currentPos) {
         if (currentPos < 0)
             currentPos = 0;
-        if (currentPos >= stepMax)
-            currentPos = stepMax;
         this.currentPos = currentPos;
         if (stepAdapter != null) {
             stepAdapter.notifyChanged();
