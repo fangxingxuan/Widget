@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.fxx.library.widget.common.AvatarViewGroup;
@@ -15,6 +16,7 @@ import com.fxx.library.widget.utils.FXWidgetUtils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by yy on 2017/10/11.
@@ -32,9 +34,9 @@ public class AvatarGroupActivity extends BaseActivity {
 
         Integer[] colorArray = new Integer[]{Color.GREEN, Color.RED, Color.BLUE, Color.CYAN, Color.MAGENTA, Color
                 .DKGRAY};
-        List<Integer> colors = Arrays.asList(colorArray);
+        final List<Integer> colors = Arrays.asList(colorArray);
 
-        AvatarViewGroup<Integer, CircleImageView> avatar_group_lor = (AvatarViewGroup) findViewById(R.id
+        final AvatarViewGroup<Integer, CircleImageView> avatar_group_lor = (AvatarViewGroup) findViewById(R.id
                 .avatar_group_lor);
         AvatarViewGroup<Integer, CircleImageView> avatar_group_lor_invert = (AvatarViewGroup) findViewById(R.id
                 .avatar_group_lor_invert);
@@ -61,14 +63,21 @@ public class AvatarGroupActivity extends BaseActivity {
             }
         };
 
+        final Random random = new Random();
         /////////////////////////////// 左边覆盖右边(默认) /////////////////////////////////
         avatar_group_lor.setOverOrientation(AvatarViewGroup.Orientation.LOR);
         avatar_group_lor.setOverlap((int) FXWidgetUtils.dp2px(6, this));
         avatar_group_lor.setChildSize((int) FXWidgetUtils.dp2px(52, this), (int) FXWidgetUtils.dp2px(52, this));
         avatar_group_lor.setOnDisplayListener(onDisplayListener);
         avatar_group_lor.setOnGenerateViewListener(onGenerateViewListener);
-        avatar_group_lor.setShowMore(false);
+        avatar_group_lor.setShowMore(true);
         avatar_group_lor.setDatas(colors.subList(0, 5));
+        avatar_group_lor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                avatar_group_lor.setDatas(colors.subList(0, random.nextInt(5) + 1));
+            }
+        });
 
         //逆向
         avatar_group_lor_invert.setInvert(true);

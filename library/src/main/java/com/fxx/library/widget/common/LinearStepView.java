@@ -61,7 +61,8 @@ public class LinearStepView<T> extends BaseCustomView {
     private Drawable stepDrawable;
     private int stepMax = STEP_MAX;
     private int currentPos = CURRENT_POS;
-    private int lastPos = -1;
+    private int selectedPos = CURRENT_POS;
+    private int lastSelectedPos = -1;
     private View lastAdditionalView = null;
     private int steppedLineColor = RED_COLOR;
     private int stepLineColor = GRAY_COLOR_LIGHT;
@@ -150,6 +151,19 @@ public class LinearStepView<T> extends BaseCustomView {
         updateProgressDrawable();
     }
 
+    public void setSelectedPos(int selectedPos) {
+        if (this.selectedPos == selectedPos)
+            return;
+        // if (selectedPos > stepMax)
+        //     selectedPos = stepMax;
+        if (selectedPos < 0)
+            selectedPos = 0;
+        this.selectedPos = selectedPos;
+        if (stepAdapter != null) {
+            stepAdapter.notifyChanged();
+        }
+    }
+
     //要先设置Max再设置Current，否则可能得到不正确的Current
     private void setStepMax(int max) {
         if (max < 1)
@@ -162,8 +176,8 @@ public class LinearStepView<T> extends BaseCustomView {
     public void setStepCurrent(int currentPos) {
         if (currentPos < 0)
             currentPos = 0;
-        // if (currentPos >= stepMax)
-        //     currentPos = stepMax;
+        if (currentPos >= stepMax)
+            currentPos = stepMax;
         this.currentPos = currentPos;
         if (stepAdapter != null) {
             stepAdapter.notifyChanged();
@@ -207,7 +221,7 @@ public class LinearStepView<T> extends BaseCustomView {
         }
         stepAdapter = adapter;
         adapter.registerObserver(dataObserver);
-        adapter.notifyChanged();
+        stepAdapter.notifyChanged();
     }
 
     private class StepDataObserver extends DataObserver {
@@ -221,9 +235,9 @@ public class LinearStepView<T> extends BaseCustomView {
                 //绑定当前step，返回一个附加View（可以为null），添加到当前step中去
                 View additionalView = stepAdapter.onBindStep(data, i);
                 addViewToStep(i, additionalView);
-                if (currentPos == i) {//通知当前选中的step
-                    stepAdapter.onStepSelected(additionalView, lastAdditionalView, i, lastPos);
-                    lastPos = currentPos;
+                if (selectedPos == i) {//通知当前选中的step
+                    stepAdapter.onStepSelected(additionalView, lastAdditionalView, i, lastSelectedPos);
+                    lastSelectedPos = selectedPos;
                     lastAdditionalView = additionalView;
                 }
             }
@@ -297,15 +311,16 @@ public class LinearStepView<T> extends BaseCustomView {
         layout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pos == lastPos)
+                if (pos == lastSelectedPos)
                     return;
 
                 if (pos > currentPos) {
                     return;
                 }
 
-                stepAdapter.onStepSelected(additionalView, lastAdditionalView, pos, lastPos);
-                lastPos = pos;
+                selectedPos = pos;
+                stepAdapter.onStepSelected(additionalView, lastAdditionalView, selectedPos, lastSelectedPos);
+                lastSelectedPos = selectedPos;
                 lastAdditionalView = additionalView;
             }
         });
@@ -410,8 +425,8 @@ public class LinearStepView<T> extends BaseCustomView {
         return currentPos;
     }
 
-    public int getLastPos() {
-        return lastPos;
+    public int getLastSelectedPos() {
+        return lastSelectedPos;
     }
 
     public View getLastAdditionalView() {

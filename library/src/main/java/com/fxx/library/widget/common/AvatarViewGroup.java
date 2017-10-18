@@ -222,8 +222,8 @@ public class AvatarViewGroup<T, V extends ImageView> extends ViewGroup {
     }
 
     public void setDatas(List<T> datas) {
-        if (mDatas != null)
-            mDatas.clear();
+        // if (mDatas != null)
+        //     mDatas.clear();
 
         if (datas == null || datas.isEmpty()) {
             Log.e(TAG, "mDatas is empty!");
