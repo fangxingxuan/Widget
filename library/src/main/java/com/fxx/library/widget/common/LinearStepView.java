@@ -43,8 +43,8 @@ public class LinearStepView<T> extends BaseCustomView {
 
     private final float GAP_SIZE = FXWidgetUtils.dp2px(80, getContext());
     private final int GAP_MARGIN = (int) FXWidgetUtils.dp2px(10, getContext());
-    private final int TOP_MARGIN = (int) FXWidgetUtils.dp2px(12, getContext());
     private final int STEP_VIEW_SIZE = (int) FXWidgetUtils.dp2px(17, getContext());
+    private int topMargin = (int) FXWidgetUtils.dp2px(12, getContext());
     private static final int STEP_MAX = 5;
     private static final int CURRENT_POS = 0;
     private static final int RED_COLOR = Color.rgb(0xe0, 0x00, 0x1e);
@@ -157,9 +157,9 @@ public class LinearStepView<T> extends BaseCustomView {
         if (selectedPos < 0)
             selectedPos = 0;
         this.selectedPos = selectedPos;
-        if (stepAdapter != null) {
-            stepAdapter.notifyChanged();
-        }
+        // if (stepAdapter != null) {
+        //     stepAdapter.notifyChanged();
+        // }
     }
 
     //要先设置Max再设置Current，否则可能得到不正确的Current
@@ -175,9 +175,9 @@ public class LinearStepView<T> extends BaseCustomView {
         if (currentPos < 0)
             currentPos = 0;
         this.currentPos = currentPos;
-        if (stepAdapter != null) {
-            stepAdapter.notifyChanged();
-        }
+        // if (stepAdapter != null) {
+        //     stepAdapter.notifyChanged();
+        // }
     }
 
     private void updateProgressDrawable() {
@@ -330,7 +330,7 @@ public class LinearStepView<T> extends BaseCustomView {
         if (additionalView != null) {
             layout.addView(additionalView);
             LinearLayout.LayoutParams additionalParams = (LinearLayout.LayoutParams) additionalView.getLayoutParams();
-            additionalParams.topMargin = TOP_MARGIN;
+            additionalParams.topMargin = topMargin;
             additionalView.setLayoutParams(additionalParams);
         }
     }
@@ -431,6 +431,14 @@ public class LinearStepView<T> extends BaseCustomView {
 
     public StepAdapter<T> getStepAdapter() {
         return stepAdapter;
+    }
+
+    public int getAdditionalViewTopMargin() {
+        return topMargin;
+    }
+
+    public void setAdditionalViewTopMargin(int topMargin) {
+        this.topMargin = topMargin;
     }
 
     public static class Observable<T> {

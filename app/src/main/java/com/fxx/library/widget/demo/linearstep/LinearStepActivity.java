@@ -101,6 +101,7 @@ public class LinearStepActivity extends BaseActivity {
         adapter3.setSteps(getSteps(5));
 
         stepView4.setStepCurrent(2);
+        stepView4.setAdditionalViewTopMargin(10);
         stepView4.setSelectedPos(2);
         stepView4.setStepLineHeight((int) FXWidgetUtils.dp2px(2, this));
         stepView4.setStepLineColor(Color.LTGRAY);
