@@ -16,14 +16,23 @@
         android:layout_marginTop="20dp"
         app:fvEachFollowedBackground="@color/colorAccent"
         app:fvEachFollowedText="相互的呀"
-        app:fvEachFollowedTextColor="#00bb80"
-        app:fvLeftDrawable="@mipmap/ic_launcher"/>
+        app:fvEachFollowedTextColor="#00bb80"/>
 
     <com.fxx.library.widget.common.FollowableView
         android:id="@+id/follow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"/>
+
+    <com.fxx.library.widget.common.FollowableView
+        android:id="@+id/follow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:fvEachFollowedBackground="@color/white"
+        app:fvEachFollowedText="关注"
+        app:fvEachFollowedTextColor="@color/white"
+        app:fvLeftDrawable="@mipmap/ic_launcher"/>
 
     <com.fxx.library.widget.common.FollowableView
         android:id="@+id/follow3"

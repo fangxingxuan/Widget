@@ -22,6 +22,7 @@ public class FollowableActivity extends BaseActivity {
     @BindView(R.id.follow2) FollowableView follow2;
     @BindView(R.id.follow3) FollowableView follow3;
     @BindView(R.id.follow4) FollowableView follow4;
+    @BindView(R.id.follow5) FollowableView follow5;
 
     @OnClick(R.id.follow1)
     void onClick1() {
@@ -43,6 +44,16 @@ public class FollowableActivity extends BaseActivity {
         Toast.makeText(this, follow4.getText(), Toast.LENGTH_SHORT).show();
     }
 
+    @OnClick(R.id.follow5)
+    void onClick5() {
+        Toast.makeText(this, follow5.getText(), Toast.LENGTH_SHORT).show();
+        if (follow5.getFollowedType() == FollowableView.FOLLOWED_TYPE_FOLLOWED) {
+            follow5.setFollowed(FollowableView.FOLLOWED_TYPE_UNFOLLOWED);
+        } else {
+            follow5.setFollowed(FollowableView.FOLLOWED_TYPE_FOLLOWED);
+        }
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,5 +67,6 @@ public class FollowableActivity extends BaseActivity {
         follow2.setFollowed(FollowableView.FOLLOWED_TYPE_UNFOLLOWED);
         follow3.setFollowed(FollowableView.FOLLOWED_TYPE_FOLLOWED);
         follow4.setFollowed(FollowableView.FOLLOWED_TYPE_EACHOTHER);
+        follow5.setFollowed(FollowableView.FOLLOWED_TYPE_UNFOLLOWED);
     }
 }

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.fxx.library.widget.demo.avatargroup.AvatarGroupActivity;
+import com.fxx.library.widget.demo.banner.VerticalBannerActivity;
 import com.fxx.library.widget.demo.follow.FollowableActivity;
 import com.fxx.library.widget.demo.linearstep.LinearStepActivity;
 import com.fxx.library.widget.demo.shape.ShapeActivity;
@@ -45,6 +46,7 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener {
         items.add(new MainItem("SlidingTab"));
         items.add(new MainItem("LinearStepView"));
         items.add(new MainItem("AvatarGroup"));
+        items.add(new MainItem("VerticalBanner"));
 
         MainAdapter adapter = new MainAdapter(this, items);
         adapter.setListener(this);
@@ -78,6 +80,9 @@ public class MainActivity extends BaseActivity implements MainAdapter.Listener {
                 break;
             case 6:
                 intentToActivity(AvatarGroupActivity.class);
+                break;
+            case 7:
+                intentToActivity(VerticalBannerActivity.class);
                 break;
             default:
                 break;

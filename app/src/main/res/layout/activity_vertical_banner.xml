@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_toolbar"/>
+
+    <com.fxx.library.widget.common.banner.VerticalBannerView
+        android:id="@+id/banner0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#eeeeee"
+        app:vbvAnimDuration="500"
+        app:vbvPeriod="2000"
+        app:vbvRandomEnable="false"/>
+
+    <Button
+        android:id="@+id/button0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="8dp"
+        android:text="开始0"/>
+
+    <com.fxx.library.widget.common.banner.VerticalBannerView
+        android:id="@+id/banner1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#eeeeee"
+        app:vbvAnimDuration="800"
+        app:vbvPeriod="3000"
+        app:vbvRandomEnable="true"
+        app:vbvRandomStep="1000"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="8dp"
+        android:text="开始1"/>
+
+    <com.fxx.library.widget.common.banner.VerticalBannerView
+        android:id="@+id/banner2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="#eeeeee"
+        app:vbvAnimDuration="300"
+        app:vbvPeriod="2000"
+        app:vbvRandomEnable="true"
+        app:vbvRandomStep="1000"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="8dp"
+        android:text="开始2"/>
+
+    <Button
+        android:id="@+id/button_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:text="全部开始"/>
+
+</LinearLayout>

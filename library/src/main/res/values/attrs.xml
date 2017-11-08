@@ -93,4 +93,11 @@
         <attr name="civ_fill_color" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="VerticalBannerView">
+        <attr name="vbvPeriod" format="integer"/><!-- 切换周期，ms -->
+        <attr name="vbvAnimDuration" format="integer"/><!-- 动画时长，ms -->
+        <attr name="vbvRandomEnable" format="boolean"/><!-- 是否开启随机周期时长 -->
+        <attr name="vbvRandomStep" format="integer"/><!-- 周期时长的随机波动值 -->
+    </declare-styleable>
+
 </resources>
