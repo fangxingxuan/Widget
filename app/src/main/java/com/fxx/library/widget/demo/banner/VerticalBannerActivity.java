@@ -3,6 +3,7 @@ package com.fxx.library.widget.demo.banner;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import java.util.Random;
 public class VerticalBannerActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = VerticalBannerActivity.class.getSimpleName();
 
+    private Button bt_reset;
     private Button bt_all;
     private Button bt0;
     private Button bt1;
@@ -43,10 +45,12 @@ public class VerticalBannerActivity extends BaseActivity implements View.OnClick
 
         random = new Random();
 
+        bt_reset = (Button) findViewById(R.id.button_reset);
         bt_all = (Button) findViewById(R.id.button_all);
         bt0 = (Button) findViewById(R.id.button0);
         bt1 = (Button) findViewById(R.id.button1);
         bt2 = (Button) findViewById(R.id.button2);
+        bt_reset.setOnClickListener(this);
         bt_all.setOnClickListener(this);
         bt0.setOnClickListener(this);
         bt1.setOnClickListener(this);
@@ -115,6 +119,15 @@ public class VerticalBannerActivity extends BaseActivity implements View.OnClick
                 }
                 break;
 
+            case R.id.button_reset:
+                banner0.stop();
+                banner1.stop();
+                banner2.stop();
+                banner0.start();
+                banner1.start();
+                banner2.start();
+                break;
+
             default:
                 break;
         }
@@ -136,7 +149,7 @@ public class VerticalBannerActivity extends BaseActivity implements View.OnClick
                 text_content.setText(data.content);
                 text_content.setTextColor(data.color);
 
-                System.out.println("asdaasd " + view.getHeight() + " " + view.getWidth());
+                Log.d("TAG", "setItem " + data.nick + " " + view);
             }
         };
     }

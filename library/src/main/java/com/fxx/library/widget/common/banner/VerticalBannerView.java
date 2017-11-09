@@ -41,6 +41,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
     private Paint mDebugPaint;
 
     private Random random;
+    private AnimatorSet set;
 
     public VerticalBannerView(Context context) {
         this(context, null);
@@ -80,6 +81,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
         }
 
         random = new Random();
+        set = new AnimatorSet();
 
         array.recycle();
     }
@@ -111,6 +113,12 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
     }
 
     public void stop() {
+        set.removeAllListeners();
+        set.cancel();
+        if (mFirstView != null)
+            mFirstView.setTranslationY(0);
+        if (mSecondView != null)
+            mSecondView.setTranslationY(0);
         removeCallbacks(mRunnable);
         isStarted = false;
     }
@@ -179,11 +187,19 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
 
 
     private void performSwitch() {
+        if (mFirstView == null || mSecondView == null)
+            return;
+
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(mFirstView, "translationY", mFirstView.getTranslationY() -
                 mBannerHeight);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(mSecondView, "translationY", mSecondView.getTranslationY()
                 - mBannerHeight);
-        AnimatorSet set = new AnimatorSet();
+
+        set.removeAllListeners();
+        set.cancel();
+        mFirstView.setTranslationY(0);
+        mSecondView.setTranslationY(0);
+
         set.playTogether(animator1, animator2);
         set.addListener(new AnimatorListenerAdapter() {
             @Override
