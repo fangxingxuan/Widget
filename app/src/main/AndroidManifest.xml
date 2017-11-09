@@ -25,6 +25,7 @@
         <activity android:name=".linearstep.LinearStepActivity"/>
         <activity android:name=".avatargroup.AvatarGroupActivity"/>
         <activity android:name=".banner.VerticalBannerActivity"/>
+        <activity android:name=".banner.VerticalBannerListActivity"/>
 
     </application>
 

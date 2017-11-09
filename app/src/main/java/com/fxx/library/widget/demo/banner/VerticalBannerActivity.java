@@ -1,13 +1,18 @@
 package com.fxx.library.widget.demo.banner;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fxx.library.widget.common.banner.BaseBannerAdapter;
 import com.fxx.library.widget.common.banner.VerticalBannerView;
@@ -35,13 +40,34 @@ public class VerticalBannerActivity extends BaseActivity implements View.OnClick
     private VerticalBannerView banner2;
 
     private Random random;
+    private BaseBannerAdapter<BannerModel> adapter0;
+    private BaseBannerAdapter<BannerModel> adapter1;
+    private BaseBannerAdapter<BannerModel> adapter2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vertical_banner);
 
-        attachToolbar("VerticalBannerView");
+        final Toolbar toolbar = attachToolbar("VerticalBannerView");
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_list:
+                        startActivity(new Intent(VerticalBannerActivity.this, VerticalBannerListActivity.class));
+                        break;
+
+                    case R.id.action_hehe:
+                        Toast.makeText(VerticalBannerActivity.this, "hehe", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
 
         random = new Random();
 
@@ -60,9 +86,9 @@ public class VerticalBannerActivity extends BaseActivity implements View.OnClick
         banner1 = (VerticalBannerView) findViewById(R.id.banner1);
         banner2 = (VerticalBannerView) findViewById(R.id.banner2);
 
-        BaseBannerAdapter<BannerModel> adapter0 = newAdapter();
-        BaseBannerAdapter<BannerModel> adapter1 = newAdapter();
-        BaseBannerAdapter<BannerModel> adapter2 = newAdapter();
+        adapter0 = newAdapter();
+        adapter1 = newAdapter();
+        adapter2 = newAdapter();
         banner0.setAdapter(adapter0);
         banner1.setAdapter(adapter1);
         banner2.setAdapter(adapter2);
@@ -70,6 +96,12 @@ public class VerticalBannerActivity extends BaseActivity implements View.OnClick
         adapter0.setData(getDatas(5));
         adapter1.setData(getDatas(4));
         adapter2.setData(getDatas(3));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_vertical_banner, menu);
+        return true;
     }
 
     @Override
@@ -123,6 +155,9 @@ public class VerticalBannerActivity extends BaseActivity implements View.OnClick
                 banner0.stop();
                 banner1.stop();
                 banner2.stop();
+                adapter0.setData(getDatas(5));
+                adapter1.setData(getDatas(4));
+                adapter2.setData(getDatas(3));
                 banner0.start();
                 banner1.start();
                 banner2.start();

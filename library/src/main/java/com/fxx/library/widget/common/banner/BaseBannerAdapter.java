@@ -5,7 +5,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
+/**
+ * Created by yy on 2017/11/9
+ */
 public abstract class BaseBannerAdapter<T> {
     private List<T> mDatas;
     private OnDataChangedListener mOnDataChangedListener;
@@ -13,9 +15,6 @@ public abstract class BaseBannerAdapter<T> {
     public BaseBannerAdapter() {
     }
 
-    /**
-     * 设置banner填充的数据
-     */
     public void setData(List<T> datas) {
         if (datas == null)
             mDatas = new ArrayList<>();
@@ -40,14 +39,8 @@ public abstract class BaseBannerAdapter<T> {
         return mDatas.get(position);
     }
 
-    /**
-     * 设置banner的样式
-     */
     public abstract View getView(VerticalBannerView parent);
 
-    /**
-     * 设置banner的数据
-     */
     public abstract void setItem(View view, T data);
 
 

@@ -20,8 +20,12 @@ import com.fxx.library.widget.R;
 
 import java.util.Random;
 
-@SuppressWarnings("unused")
+/**
+ * Created by yy on 2017/11/9
+ */
 public class VerticalBannerView extends LinearLayout implements BaseBannerAdapter.OnDataChangedListener {
+
+    private static final String TAG = VerticalBannerView.class.getSimpleName();
 
     private float mBannerHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources()
             .getDisplayMetrics());
@@ -86,9 +90,6 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
         array.recycle();
     }
 
-    /**
-     * 设置banner的数据
-     */
     public void setAdapter(BaseBannerAdapter adapter) {
         if (adapter == null) {
             throw new RuntimeException("adapter must not be null");
@@ -102,6 +103,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
     }
 
     public void start() {
+        Log.d(TAG, "start");
         if (mAdapter == null) {
             throw new RuntimeException("you must call setAdapter() before start");
         }
@@ -113,6 +115,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
     }
 
     public void stop() {
+        Log.d(TAG, "stop");
         set.removeAllListeners();
         set.cancel();
         if (mFirstView != null)
@@ -121,6 +124,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
             mSecondView.setTranslationY(0);
         removeCallbacks(mRunnable);
         isStarted = false;
+        // requestLayout();
     }
 
 
@@ -130,21 +134,33 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
 
         removeAllViews();
 
+        mFirstView = null;
+        mSecondView = null;
         if (mAdapter.getCount() == 1) {
             mFirstView = mAdapter.getView(this);
             mAdapter.setItem(mFirstView, mAdapter.getItem(0));
             addView(mFirstView);
+
+            //需要重置一下child的高度，第二个View看不见所以onMeasure中会变成0
+            mFirstView.getLayoutParams().height = (int) mBannerHeight;
         } else {
             mFirstView = mAdapter.getView(this);
             mSecondView = mAdapter.getView(this);
             mAdapter.setItem(mFirstView, mAdapter.getItem(0));
             mAdapter.setItem(mSecondView, mAdapter.getItem(1));
+
             addView(mFirstView);
             addView(mSecondView);
+
+            //需要重置一下child的高度，第二个View看不见所以onMeasure中会变成0
+            mFirstView.getLayoutParams().height = (int) mBannerHeight;
+            mSecondView.getLayoutParams().height = (int) mBannerHeight;
 
             mPosition = 1;
             isStarted = false;
         }
+
+        requestLayout();
     }
 
     @Override
@@ -156,10 +172,14 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
         } else {
             mBannerHeight = getMeasuredHeight();
         }
+
+        Log.d(TAG, "mBannerHeight=" + mBannerHeight + "  getMeasuredHeight=" + getMeasuredHeight());
+
         if (isInEditMode()) {
             setBackgroundColor(Color.GRAY);
             return;
         }
+
         if (mFirstView != null) {
             mFirstView.getLayoutParams().height = (int) mBannerHeight;
         }
@@ -190,15 +210,15 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
         if (mFirstView == null || mSecondView == null)
             return;
 
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(mFirstView, "translationY", mFirstView.getTranslationY() -
-                mBannerHeight);
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mSecondView, "translationY", mSecondView.getTranslationY()
-                - mBannerHeight);
-
         set.removeAllListeners();
         set.cancel();
         mFirstView.setTranslationY(0);
         mSecondView.setTranslationY(0);
+
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(mFirstView, "translationY", mFirstView.getTranslationY() -
+                mBannerHeight);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(mSecondView, "translationY", mSecondView.getTranslationY()
+                - mBannerHeight);
 
         set.playTogether(animator1, animator2);
         set.addListener(new AnimatorListenerAdapter() {
@@ -243,7 +263,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Log.d("VerticalBannerView", "onDetachedFromWindow stop");
+        Log.d(TAG, "onDetachedFromWindow stop");
         stop();
     }
 
@@ -252,19 +272,3 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
         super.onConfigurationChanged(newConfig);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

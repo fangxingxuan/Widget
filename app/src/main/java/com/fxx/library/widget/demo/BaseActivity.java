@@ -19,12 +19,11 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-
-    protected void attachToolbar(String title) {
-        attachToolbar(title, true);
+    protected Toolbar attachToolbar(String title) {
+        return attachToolbar(title, true);
     }
 
-    protected void attachToolbar(String title, boolean enableBack) {
+    protected Toolbar attachToolbar(String title, boolean enableBack) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(title);
 
@@ -34,6 +33,8 @@ public class BaseActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        return toolbar;
     }
 
     @Override
