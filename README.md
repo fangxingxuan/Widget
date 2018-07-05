@@ -28,5 +28,3 @@ Please see every detail from wiki or source code
 
 
 # Screenshots
-
-![111.png](http://upload-images.jianshu.io/upload_images/1622327-4ffd94874ae0e8f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
